@@ -7,6 +7,8 @@ feature 'Pictures' do
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'Log in'
-    expect(page).to have_button 'Add a picture'
+    click_button 'Add a picture'
+    expect(page).to have_content 'Description'
+    expect(page).to have_button 'Post'
   end
 end
