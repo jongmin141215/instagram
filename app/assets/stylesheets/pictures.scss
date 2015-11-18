@@ -1,6 +1,21 @@
 // Place all the styles related to the pictures controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  padding-top: 40px;
+}
 .button-div {
   width: 60%;
+  margin: auto;
+}
+.form-control {
+  width: 50%;
+}
+
+.form-group {
+  width: 50%;
+  margin: auto;
+}
+.post_button {
+  margin-top: 5px;
 }

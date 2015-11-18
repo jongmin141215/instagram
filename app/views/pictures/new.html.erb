@@ -1,4 +1,15 @@
-<%= form_for [@user, @picture], html: { multipart: true } do |f| %>
-  <%= f.file_field :image %>
-  
-<% end %>
+<script>
+  $(function() {
+    $('#picture_image').hide()
+  })
+</script>
+<!-- <div class="container"> -->
+  <div class="form-group">
+    <%= form_for [@user, @picture], html: { multipart: true } do |f| %>
+      <%= f.label :image, 'Upload Image', class: "btn btn-default", class: 'form-control' %>
+      <%= f.file_field :image %>
+      <%= f.text_area :description, placeholder: 'Describe your picutre', rows: '5', columns: '10', class: 'form-control' %>
+      <%= f.submit 'Post', class: 'form-control post_button' %>
+    <% end %>
+  <!-- </div> -->
+</div>
