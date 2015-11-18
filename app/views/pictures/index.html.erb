@@ -4,14 +4,24 @@
       <input type="submit" class="btn btn-default btn-lg btn-block" value="Add a picture">
     </form>
   <% end %>
-
-
 </div>
-<div class="panel panel-default">
-  <div class="panel-body">
-    <% @pictures.each do |picture| %>
+
+<% @pictures.each do |picture| %>
+  <div class="panel panel-default">
+    <div class="panel-body">
       <%= image_tag picture.image.url(:medium) %>
-    <% end %>
+    </div>
+    <div class="panel-footer">
+      <div>
+        <span><%= picture.description %></span>
+        <%= link_to 'Edit', '#', class: 'edit' %>
+      </div>
+      <div class='edit_description'>
+        <%= form_for picture do |f| %>
+          <%= f.text_area :description, class: 'edit_textarea form-control', name: 'edit_description' %>
+          <%= link_to 'Save', edit_picture_path(picture), class: 'save' %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-</div>
+<% end %>

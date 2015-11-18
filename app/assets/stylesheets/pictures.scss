@@ -5,7 +5,7 @@ body {
   padding-top: 40px;
 }
 .button-div {
-  width: 60%;
+  width: 535px;
   margin: auto;
 }
 .form-control {
@@ -23,8 +23,27 @@ img {
   display: block;
   margin: auto;
   margin-bottom: 10px;
+  border-radius: 5px;
 }
 .panel {
-  width: 60%;
+  width: 535px;
   margin: auto;
 }
+.panel-footer {
+  min-height: 41px;
+}
+.edit {
+  float: right;
+}
+.edit_textarea {
+  width: 450px !important;
+  display: inline-block !important;
+}
+.save {
+  float: right;
+}
+
+// .delete {
+//   float: right;
+//
+// }

@@ -38,6 +38,8 @@ group :test do
   gem 'capybara'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
+  gem 'poltergeist'
+  gem 'database_cleaner'
 end
 
 group :development, :test do

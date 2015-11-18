@@ -14,8 +14,17 @@ class PicturesController < ApplicationController
     redirect_to user_pictures_path(@user)
   end
 
+  def edit
+  end
+
+  def update
+    # respond_to :jso
+    # redirect_to "/users/#{current_user.id}/pictures"
+    render json: { description: params[:description] }
+  end
+
   private
   def picture_params
-    params.require(:picture).permit(:image)
+    params.require(:picture).permit(:image, :description)
   end
 end
