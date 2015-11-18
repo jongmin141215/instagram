@@ -1,7 +1,13 @@
 <div class="button-div">
   <% if current_user %>
     <form action="/users/<%= current_user.id%>/pictures/new">
-      <input type="submit" class="btn btn-default btn-lg btn-block add_pic" value="Add a picture">
+      <input type="submit" class="btn btn-default btn-lg btn-block" value="Add a picture">
     </form>
   <% end %>
+
+
 </div>
+
+<% @pictures.each do |picture| %>
+  <%= image_tag picture.image.url(:medium) %>
+<% end %>

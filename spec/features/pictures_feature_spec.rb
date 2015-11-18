@@ -16,9 +16,12 @@ feature 'Pictures' do
       expect(page).to have_button 'Post'
     end
 
-    # scenario 'User can add a picture' do
-    #
-    # end
+    scenario 'User can add a picture' do
+      attach_file('Upload Image', './spec/fixtures/associations.jpg')
+      fill_in 'picture_description', with: 'associations'
+      click_button 'Post'
+      expect(page).to have_selector 'img'
+    end
   end
 
 end
