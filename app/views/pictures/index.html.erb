@@ -7,7 +7,11 @@
 
 
 </div>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <% @pictures.each do |picture| %>
+      <%= image_tag picture.image.url(:medium) %>
+    <% end %>
+  </div>
 
-<% @pictures.each do |picture| %>
-  <%= image_tag picture.image.url(:medium) %>
-<% end %>
+</div>
