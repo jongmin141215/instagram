@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
   def index
-    @pictures = Picture.all
+    @pictures = Picture.where(user_id: params[:user_id]) || []
   end
 
   def new
@@ -18,8 +18,6 @@ class PicturesController < ApplicationController
   end
 
   def update
-    # respond_to :jso
-    # redirect_to "/users/#{current_user.id}/pictures"
     render json: { description: params[:description] }
   end
 
