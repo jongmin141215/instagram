@@ -9,12 +9,13 @@ $(function() {
     event.preventDefault();
     $(this).parent().hide();
     $(this).parent().next().show();
-  })
+  });
 
   $('.save').on('click', function(event) {
     var $saveButton = $(this);
     event.preventDefault();
     var $url = $(this).parent('form').attr('action');
+    console.log($url);
     $.ajax({
       url: $url,
       method: 'PUT',
@@ -25,5 +26,6 @@ $(function() {
     })
     $saveButton.parent().parent().hide();
     $saveButton.parent().parent().prev().show();
-  })
-})
+  });
+
+});

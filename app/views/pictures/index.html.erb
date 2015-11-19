@@ -14,8 +14,10 @@
     <div class="panel-footer">
       <div>
         <span class="description"><%= picture.description %></span>
-        <span><%= link_to '', picture_path(picture), class: 'glyphicon glyphicon-trash', method: :delete %></span>
-        <%= link_to '', '#', class: 'edit glyphicon glyphicon-edit' %>
+        <% if current_user && current_user.id == picture.user_id %>
+          <span><%= link_to '', picture_path(picture), class: 'delete glyphicon glyphicon-trash', method: :delete %></span>
+          <%= link_to '', '#', class: 'edit glyphicon glyphicon-edit' %>
+        <% end %>
       </div>
       <div class='edit_description'>
         <%= form_for picture do |f| %>
