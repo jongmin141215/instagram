@@ -13,14 +13,14 @@
     </div>
     <div class="panel-footer">
       <div>
-        <span><%= picture.description %></span>
-        <%= link_to 'Delete', picture_path(picture), method: :delete %>
-        <%= link_to 'Edit', '#', class: 'edit' %>
+        <span class="description"><%= picture.description %></span>
+        <span><%= link_to '', picture_path(picture), class: 'glyphicon glyphicon-trash', method: :delete %></span>
+        <%= link_to '', '#', class: 'edit glyphicon glyphicon-edit' %>
       </div>
       <div class='edit_description'>
         <%= form_for picture do |f| %>
           <%= f.text_area :description, class: 'edit_textarea form-control', name: 'edit_description' %>
-          <%= link_to 'Save', edit_picture_path(picture), class: 'save' %>
+          <%= link_to '', edit_picture_path(picture), class: 'save glyphicon glyphicon-floppy-saved' %>
         <% end %>
       </div>
     </div>

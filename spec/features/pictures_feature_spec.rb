@@ -28,7 +28,7 @@ feature 'Pictures' do
       attach_file('Upload Image', './spec/fixtures/associations.jpg')
       fill_in 'picture_description', with: 'associations'
       click_button 'Post'
-      click_link 'Edit'
+      find('.glyphicon-trash').click
       expect(page).to have_selector 'textarea'
       fill_in 'edit_description', with: 'has many through associations'
       click_link 'Save'
@@ -39,7 +39,7 @@ feature 'Pictures' do
       attach_file('Upload Image', './spec/fixtures/associations.jpg')
       fill_in 'picture_description', with: 'associations'
       click_button 'Post'
-      click_link 'Delete'
+      find('.save').click
       expect(page).not_to have_selector 'img'
       expect(page).not_to have_content 'associations'
     end

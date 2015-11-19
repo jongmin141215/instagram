@@ -21,7 +21,7 @@ $(function() {
       data: {description: $(this).prev().val()},
       dataType: "json"
     }).done(function(data) {
-      $saveButton.parent().parent().prev().children('span').text(data.description)
+      $saveButton.parent().parent().prev().children('span.description').text(data.description)
     })
     $saveButton.parent().parent().hide();
     $saveButton.parent().parent().prev().show();
