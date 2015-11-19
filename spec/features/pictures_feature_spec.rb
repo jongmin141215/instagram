@@ -35,6 +35,14 @@ feature 'Pictures' do
       expect(page).to have_content 'has many through associations'
     end
 
+    scenario 'User can delete picture' do
+      attach_file('Upload Image', './spec/fixtures/associations.jpg')
+      fill_in 'picture_description', with: 'associations'
+      click_button 'Post'
+      click_link 'Delete'
+      expect(page).not_to have_selector 'img'
+      expect(page).not_to have_content 'associations'
+    end
 
   end
 

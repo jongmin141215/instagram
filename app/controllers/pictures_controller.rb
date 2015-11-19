@@ -21,6 +21,13 @@ class PicturesController < ApplicationController
     render json: { description: params[:description] }
   end
 
+  def destroy
+    @picture = Picture.find(params[:id])
+    @user = @picture.user
+    @picture.destroy
+    redirect_to user_pictures_path(@user)
+  end
+
   private
   def picture_params
     params.require(:picture).permit(:image, :description)
