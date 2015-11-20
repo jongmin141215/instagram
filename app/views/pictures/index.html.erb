@@ -23,9 +23,9 @@
         <button class="comment glyphicon glyphicon-comment"></button>
       </div>
       <% if picture.comments %>
-        <ul>
+        <ul class="comments">
           <% picture.comments.each do |comment| %>
-            <li><%= comment.content %></li>
+            <li class="each_comment"><%= link_to "#{comment.user.name}: ", user_pictures_path(comment.user) %><%= comment.content %></li>
           <% end %>
         </ul>
       <% end %>

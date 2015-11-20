@@ -1,7 +1,7 @@
 class PicturesController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :homepage]
   def index
-    @pictures = Picture.where(user_id: params[:user_id]) || []
+    @pictures = Picture.where(user_id: params[:user_id])
   end
 
   def new
@@ -26,7 +26,6 @@ class PicturesController < ApplicationController
     @picture = Picture.find(params[:id])
     @picture.update(update_params)
     render json: { description: params[:picture][:description] }
-
   end
 
   def destroy
@@ -34,8 +33,13 @@ class PicturesController < ApplicationController
     @user = @picture.user
     @picture.destroy
     render json: {}
-
   end
+
+  def homepage
+    @user = User.find(current_user.id)
+    redirect_to user_pictures_path(@user)
+  end
+
 
   private
   def picture_params

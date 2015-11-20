@@ -4,4 +4,10 @@ class Picture < ActiveRecord::Base
   belongs_to :user
   has_many :comments
   validates :image, attachment_presence: true
+
+  def build_with_user(params, user)
+    comment = self.comments.build(params)
+    comment.user = user
+    comment
+  end
 end

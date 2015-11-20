@@ -9,9 +9,13 @@ class CommentsController < ApplicationController
 
   def create
     @picture = Picture.find(params[:picture_id])
-    @comment = @picture.comments.create(comment_params)
+    @comment = @picture.build_with_user(comment_params, current_user)
+    if @comment.save
     # redirect_to "/users/#{@picture.user_id}/pictures"
-    render json: { comment: params[:comment][:content] }
+      render json: { comment: params[:comment][:content] }
+    else
+      render :nothing
+    end
   end
 
   private

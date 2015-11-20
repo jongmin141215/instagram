@@ -21,7 +21,16 @@ feature 'Comments' do
       fill_in 'comment[content]', with: 'nice'
       find('.glyphicon-save').click
       expect(page).to have_content 'nice'
+      expect(page).to have_content 'Jongmin2'
     end
+
+    # scenario 'Comments cannot be empty', js: true do
+    #   visit "/users/#{@user.id}/pictures"
+    #   find('.comment').click
+    #   fill_in 'comment[content]', with: 'hi'
+    #   find('.glyphicon-save').click
+    #   expect(page).to have_css 'li.each_comment'
+    # end
 
   end
 end
