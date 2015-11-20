@@ -18,12 +18,27 @@
           <span><%= link_to '', picture_path(picture), class: 'delete glyphicon glyphicon-trash', method: :delete %></span>
           <%= link_to '', '#', class: 'edit glyphicon glyphicon-edit' %>
         <% end %>
+        <button class='comment glyphicon glyphicon-comment'></button>
       </div>
+      <% if picture.comments %>
+        <ul>
+          <% picture.comments.each do |comment| %>
+            <li><%= comment.content %></li>
+          <% end %>
+        </ul>
+      <% end %>
       <div class='edit_description'>
         <%= form_for picture do |f| %>
-          <%= f.text_area :description, class: 'edit_textarea form-control', name: 'edit_description' %>
+          <%= f.text_area :description, class: 'edit_textarea form-control', name: "picture[description]" %>
           <%= link_to '', edit_picture_path(picture), class: 'save glyphicon glyphicon-floppy-saved' %>
         <% end %>
+      </div>
+      <div class="comment_div">
+        <%= link_to '', picture_comments_path(picture), class: 'glyphicon glyphicon-save' %>
+        <form action="#" class="comment_form">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="textarea" name="comment[content]" class="form-control" placeholder="Leave comments">
+        </form>
       </div>
     </div>
   </div>

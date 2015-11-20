@@ -19,7 +19,10 @@ class PicturesController < ApplicationController
   end
 
   def update
-    render json: { description: params[:description] }
+    @picture = Picture.find(params[:id])
+    @picture.update(update_params)
+    render json: { description: params[:picture][:description] }
+
   end
 
   def destroy
@@ -32,5 +35,9 @@ class PicturesController < ApplicationController
   private
   def picture_params
     params.require(:picture).permit(:image, :description)
+  end
+
+  def update_params
+    params.require(:picture).permit(:description)
   end
 end

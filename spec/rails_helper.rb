@@ -9,6 +9,7 @@ require 'capybara/rails'
 require 'factory_girl_rails'
 require 'capybara/poltergeist'
 require 'support/database_cleaner'
+require 'byebug'
 Capybara.javascript_driver = :poltergeist
 # Add additional requires below this line. Rails is not loaded until this point!
 

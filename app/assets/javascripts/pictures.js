@@ -15,11 +15,10 @@ $(function() {
     var $saveButton = $(this);
     event.preventDefault();
     var $url = $(this).parent('form').attr('action');
-    console.log($url);
     $.ajax({
       url: $url,
       method: 'PUT',
-      data: {description: $(this).prev().val()},
+      data: {"picture": {"description": $(this).prev().val()}},
       dataType: "json"
     }).done(function(data) {
       $saveButton.parent().parent().prev().children('span.description').text(data.description)

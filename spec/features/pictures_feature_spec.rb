@@ -44,6 +44,11 @@ feature 'Pictures' do
       expect(page).not_to have_selector 'img'
       expect(page).not_to have_content 'associations'
     end
+
+
+    # context 'Signed-in visitors' do
+    #
+    # end
   end
 
   context 'User not signed in' do

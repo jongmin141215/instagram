@@ -46,7 +46,14 @@ img {
   float: right;
   margin-left: 10px;
 }
-// .delete {
-//   float: right;
-//
-// }
+.comment {
+  float: right;
+  margin-right: 10px;
+}
+.comment_form .form-control {
+  margin-top: 5px;
+  width: 450px;
+}
+.glyphicon-save {
+  float: right;
+}
