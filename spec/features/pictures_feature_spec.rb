@@ -3,10 +3,10 @@ require 'rails_helper'
 feature 'Pictures' do
   context 'User signed in' do
     before do
-      user = create :user
+      @user = create :user
       visit '/users/sign_in'
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: user.password
+      fill_in 'Email', with: @user.email
+      fill_in 'Password', with: @user.password
       click_button 'Log in'
       click_button 'Add a picture'
     end
@@ -24,21 +24,28 @@ feature 'Pictures' do
       expect(page).to have_content 'associations'
     end
 
+    scenario 'User cannot post without a picture' do
+      fill_in 'picture_description', with: 'associations'
+      click_button 'Post'
+      expect(current_path).to eq("/users/#{@user.id}/pictures")
+      expect(page).to have_content 'Image can\'t be blank'
+    end
+
     # scenario 'User can edit description', js: true do
-    #   # attach_file('Upload Image', './spec/fixtures/associations.jpg')
-    #   Picture.create(image_file_name: 'associations.jpg', description: 'associations')
-    #   # fill_in 'picture_description', with: 'associations'
-    #   # click_button 'Post'
+    #   @user.pictures.create(image_file_name: 'associations.jpg', description: 'associations')
+    #   visit "/users/#{@user.id}/pictures"
     #   find('.glyphicon-trash').click
-    #   fill_in 'edit_textarea', with: 'has many through associations'
-    #   click_link 'Save'
+    #   fill_in 'picture_description', with: 'has many through associations'
+    #   find('.save').click
     #   expect(page).to have_content 'has many through associations'
     # end
 
-    scenario 'User can delete picture' do
-      attach_file('Upload Image', './spec/fixtures/associations.jpg')
-      fill_in 'picture_description', with: 'associations'
-      click_button 'Post'
+    scenario 'User can delete picture', js: true do
+      # attach_file('Upload Image', './spec/fixtures/associations.jpg')
+      # fill_in 'picture_description', with: 'associations'
+      # click_button 'Post'
+      @user.pictures.create(image_file_name: 'associations.jpg', description: 'associations')
+      visit "/users/#{@user.id}/pictures"
       find('.delete').click
       expect(page).to have_button 'Add a picture'
       expect(page).not_to have_selector 'img'

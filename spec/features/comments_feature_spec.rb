@@ -15,10 +15,10 @@ feature 'Comments' do
       click_button 'Log in'
     end
 
-    scenario 'Visitors can write commnet on pictures' do
+    scenario 'Visitors can write commnet on pictures', js: true do
       visit "/users/#{@user.id}/pictures"
       find('.comment').click
-      fill_in 'comment_box', with: 'nice'
+      fill_in 'comment[content]', with: 'nice'
       find('.glyphicon-save').click
       expect(page).to have_content 'nice'
     end

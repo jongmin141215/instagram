@@ -7,11 +7,22 @@ body {
 .button-div {
   width: 535px;
   margin: auto;
+  margin-bottom: 20px;
+}
+#picture_description {
+  margin-top: 5px;
+}
+.field_with_errors label {
+  border: 1px solid red;
+  border-radius: 5px;
+}
+.picture_error {
+  text-align: center;
+  color: #cc0000;
 }
 .form-control {
   width: 50%;
 }
-
 .form-group {
   width: 50%;
   margin: auto;
