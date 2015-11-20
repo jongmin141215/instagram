@@ -8,7 +8,7 @@ $(function() {
   $('.edit').on('click', function(event) {
     event.preventDefault();
     $(this).parent().hide();
-    $(this).parent().next().show();
+    $(this).parent().siblings('.edit_description').show();
   });
 
   $('.save').on('click', function(event) {
@@ -21,10 +21,24 @@ $(function() {
       data: {"picture": {"description": $(this).prev().val()}},
       dataType: "json"
     }).done(function(data) {
-      $saveButton.parent().parent().prev().children('span.description').text(data.description)
+      $saveButton.parents('.edit_description').parents('.panel-footer').find('span.description').text(data.description)
     })
-    $saveButton.parent().parent().hide();
-    $saveButton.parent().parent().prev().show();
+    $saveButton.parents('.edit_description').hide();
+    $saveButton.parents('.edit_description').siblings('.icons').show();
   });
+
+  $('.delete').on('click', function(event) {
+    event.preventDefault();
+    var $deleteButton = $(this);
+    var $url = $(this).attr('name');
+    console.log($url);
+    $.ajax({
+      url: $url,
+      method: 'DELETE',
+      data: {}
+    }).done(function() {
+      $deleteButton.parents('.panel').remove();
+    })
+  })
 
 });

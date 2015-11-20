@@ -12,13 +12,15 @@
       <%= image_tag picture.image.url(:medium) %>
     </div>
     <div class="panel-footer">
-      <div>
+      <div class="icons">
         <span class="description"><%= picture.description %></span>
         <% if current_user && current_user.id == picture.user_id %>
-          <span><%= link_to '', picture_path(picture), class: 'delete glyphicon glyphicon-trash', method: :delete %></span>
-          <%= link_to '', '#', class: 'edit glyphicon glyphicon-edit' %>
+
+          <button class='delete glyphicon glyphicon-trash' name="<%= picture_path(picture) %>"></button>
+          <button class="edit glyphicon glyphicon-edit"></button>
+
         <% end %>
-        <button class='comment glyphicon glyphicon-comment'></button>
+        <button class="comment glyphicon glyphicon-comment"></button>
       </div>
       <% if picture.comments %>
         <ul>

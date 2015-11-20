@@ -29,7 +29,8 @@ class PicturesController < ApplicationController
     @picture = Picture.find(params[:id])
     @user = @picture.user
     @picture.destroy
-    redirect_to user_pictures_path(@user)
+    render json: {}
+
   end
 
   private

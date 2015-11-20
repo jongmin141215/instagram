@@ -30,7 +30,8 @@ $(function() {
       $saveButton.parent().parent().append('<p>' + data.comment + '</p>')
     })
     $('.comment_form').hide();
-    $('a.comment').show();
+    $('.comment').show();
+    $('.glyphicon-save').hide();
   });
 
 });
