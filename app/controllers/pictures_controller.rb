@@ -36,8 +36,12 @@ class PicturesController < ApplicationController
   end
 
   def homepage
-    @user = User.find(current_user.id)
-    redirect_to user_pictures_path(@user)
+    if current_user
+      @user = User.find(current_user.id)
+      redirect_to user_pictures_path(@user)
+    else
+      redirect_to "/users/sign_in"
+    end
   end
 
 

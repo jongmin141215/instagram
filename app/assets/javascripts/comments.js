@@ -20,14 +20,16 @@ $(function() {
   $('.glyphicon-save').on('click', function(event) {
     var $saveButton = $(this);
     event.preventDefault();
-    var $url = $(this).attr('href');
+    var $url = $(this).attr('name');
     $.ajax({
       url: $url,
       method: 'POST',
       data: {"comment": {"content": $saveButton.next().children('input[type="textarea"]').val()}},
       dataType: "json"
     }).done(function(data) {
-      $saveButton.parent().parent().append('<p>' + data.comment + '</p>')
+      console.log(data.userid);
+      console.log(data.username);
+      $saveButton.parent().siblings('ul.comments').append('<li class="each_comment"><a href="/users/' + data.userid + '/pictures">'+ data.username + ': </a>' + data.comment + '</li>')
     })
     $('.comment_form').hide();
     $('.comment').show();

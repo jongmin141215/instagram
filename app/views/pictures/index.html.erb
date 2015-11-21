@@ -32,11 +32,11 @@
       <div class='edit_description'>
         <%= form_for picture do |f| %>
           <%= f.text_area :description, class: 'edit_textarea form-control', name: "picture[description]" %>
-          <%= link_to '', edit_picture_path(picture), class: 'save glyphicon glyphicon-floppy-saved' %>
+          <button class="save glyphicon glyphicon-floppy-saved"></button>
         <% end %>
       </div>
       <div class="comment_div">
-        <%= link_to '', picture_comments_path(picture), class: 'glyphicon glyphicon-save' %>
+        <button class='glyphicon glyphicon-save' name="<%= picture_comments_path(picture) %>"></button>
         <form action="#" class="comment_form">
           <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
           <input type="textarea" name="comment[content]" class="form-control" placeholder="Leave comments">

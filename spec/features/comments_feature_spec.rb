@@ -21,7 +21,7 @@ feature 'Comments' do
       fill_in 'comment[content]', with: 'nice'
       find('.glyphicon-save').click
       expect(page).to have_content 'nice'
-      expect(page).to have_content 'Jongmin2'
+      expect(page).to have_link 'Jongmin2'
     end
 
     # scenario 'Comments cannot be empty', js: true do
