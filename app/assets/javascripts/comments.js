@@ -8,13 +8,9 @@ $(function() {
   $('.glyphicon-save').hide();
   $('.comment').on('click', function(event) {
     var $commentButton = $(this);
-    console.log('hihi')
-    $(this).parents('.panel-footer').find('.comment_form').show()
-    // $commentButton.parents('.panel-footer').children('.comment_div').children().show();
+    $(this).parents('.panel-footer').find('.comment_form').show();
     $commentButton.hide();
-
-
-    $('.glyphicon-save').show();
+    $commentButton.parents('.panel-footer').find('.glyphicon-save').show();
   });
 
   $('.glyphicon-save').on('click', function(event) {

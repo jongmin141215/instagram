@@ -5,43 +5,44 @@
     </form>
   <% end %>
 </div>
-
-<% @pictures.each do |picture| %>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <%= image_tag picture.image.url(:medium) %>
-    </div>
-    <div class="panel-footer">
-      <div class="icons">
-        <span class="description"><%= picture.description %></span>
-        <% if current_user && current_user.id == picture.user_id %>
-
-          <button class='delete glyphicon glyphicon-trash' name="<%= picture_path(picture) %>"></button>
-          <button class="edit glyphicon glyphicon-edit"></button>
-
-        <% end %>
-        <button class="comment glyphicon glyphicon-comment"></button>
+<div class="pictures">
+  <% @pictures.each do |picture| %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= image_tag picture.image.url(:medium) %>
       </div>
-      <% if picture.comments %>
-        <ul class="comments">
-          <% picture.comments.each do |comment| %>
-            <li class="each_comment"><%= link_to "#{comment.user.name}: ", user_pictures_path(comment.user) %><%= comment.content %></li>
+      <div class="panel-footer">
+        <div class="icons">
+          <span class="description"><%= picture.description %></span>
+          <% if current_user && current_user.id == picture.user_id %>
+
+            <button class='delete glyphicon glyphicon-trash' name="<%= picture_path(picture) %>"></button>
+            <button class="edit glyphicon glyphicon-edit"></button>
+
           <% end %>
-        </ul>
-      <% end %>
-      <div class='edit_description'>
-        <%= form_for picture do |f| %>
-          <%= f.text_area :description, class: 'edit_textarea form-control', name: "picture[description]" %>
-          <button class="save glyphicon glyphicon-floppy-saved"></button>
+          <button class="comment glyphicon glyphicon-comment"></button>
+        </div>
+        <% if picture.comments %>
+          <ul class="comments">
+            <% picture.comments.each do |comment| %>
+              <li class="each_comment"><%= link_to "#{comment.user.name}: ", user_pictures_path(comment.user) %><%= comment.content %></li>
+            <% end %>
+          </ul>
         <% end %>
-      </div>
-      <div class="comment_div">
-        <button class='glyphicon glyphicon-save' name="<%= picture_comments_path(picture) %>"></button>
-        <form action="#" class="comment_form">
-          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-          <input type="textarea" name="comment[content]" class="form-control" placeholder="Leave comments">
-        </form>
+        <div class='edit_description'>
+          <%= form_for picture do |f| %>
+            <%= f.text_area :description, class: 'edit_textarea form-control', name: "picture[description]" %>
+            <button class="save glyphicon glyphicon-floppy-saved"></button>
+          <% end %>
+        </div>
+        <div class="comment_div">
+          <button class='glyphicon glyphicon-save' name="<%= picture_comments_path(picture) %>"></button>
+          <form action="#" class="comment_form">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="textarea" name="comment[content]" class="form-control" placeholder="Leave comments">
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

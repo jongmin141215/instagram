@@ -1,7 +1,7 @@
 class PicturesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :homepage]
   def index
-    @pictures = Picture.where(user_id: params[:user_id])
+    @pictures = Picture.where(user_id: params[:user_id]).order("created_at DESC")
   end
 
   def new

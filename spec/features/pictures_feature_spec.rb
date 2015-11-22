@@ -24,6 +24,18 @@ feature 'Pictures' do
       expect(page).to have_content 'associations'
     end
 
+    scenario 'Most recent picture is shown at the top' do
+      attach_file('Upload Image', './spec/fixtures/associations.jpg')
+      fill_in 'picture_description', with: 'Old'
+      click_button 'Post'
+      click_button 'Add a picture'
+      attach_file('Upload Image', './spec/fixtures/makers.JPG')
+      fill_in 'picture_description', with: 'New'
+      click_button 'Post'
+      expect(page).to have_css("div.pictures .panel:nth-child(1)", text: 'New')
+      expect(page).to have_css("div.pictures .panel:nth-child(2)", text: 'Old')
+    end
+
     scenario 'User cannot post without a picture' do
       fill_in 'picture_description', with: 'associations'
       click_button 'Post'
