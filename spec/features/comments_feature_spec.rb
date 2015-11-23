@@ -43,4 +43,11 @@ feature 'Comments' do
       expect(page).not_to have_content 'nice'
     end
   end
+
+  context 'User not signed in' do
+    scenario 'User cannot see the comment button' do
+      visit "/users/#{@user.id}/pictures"
+      expect(page).not_to have_css 'button.comment.glyphicon.glyphicon-comment'
+    end
+  end
 end

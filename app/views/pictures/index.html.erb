@@ -18,8 +18,12 @@
             <button class='delete glyphicon glyphicon-trash' name="<%= picture_path(picture) %>"></button>
             <button class="edit glyphicon glyphicon-edit"></button>
           <% end %>
-          <button class="like glyphicon glyphicon-thumbs-up" name="<%= picture_likes_path(picture) %>"><span class="like_count"><%= picture.likes.count %></span></button>
-          <button class="comment glyphicon glyphicon-comment"></button>
+          <% if current_user && current_user.id != picture.user_id %>
+            <button class="like glyphicon glyphicon-thumbs-up" name="<%= picture_likes_path(picture) %>"><span class="like_count"><%= picture.likes.count %></span></button>
+          <% end %>
+          <% if current_user %>
+            <button class="comment glyphicon glyphicon-comment"></button>
+          <% end %>
         </div>
         <% if picture.comments %>
           <ul class="comments">

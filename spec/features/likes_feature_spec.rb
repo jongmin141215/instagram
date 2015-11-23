@@ -32,10 +32,23 @@ feature 'liking pictures' do
   end
 
   context 'Visitors not signed in', js: true do
-    scenario 'Visitors cannot like' do
+    scenario 'Visitors cannot see the like button' do
       visit "/users/#{@user.id}/pictures"
-      find('.glyphicon-thumbs-up').click
-      expect(page).to have_css('.like', text: '0')
+      expect(page).not_to have_css('button.like.glyphicon.glyphicon-thumbs-up')
+    end
+  end
+
+  context 'User who posted a picture signed in' do
+    before do
+      visit '/users/sign_in'
+      fill_in 'Email', with: @user.email
+      fill_in 'Password', with: @user.password
+      click_button 'Log in'
+    end
+
+    scenario 'cannot see the like button', js: true do
+      visit "/users/#{@user.id}/pictures"
+      expect(page).not_to have_css('button.like.glyphicon.glyphicon-thumbs-up')
     end
   end
 end

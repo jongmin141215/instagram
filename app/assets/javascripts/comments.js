@@ -24,7 +24,7 @@ $(function() {
       dataType: "json"
     }).done(function(data) {
       $saveButton.parent().siblings('ul.comments').append('<li class="each_comment"><a href="/users/' + data.userid + '/pictures">'+ data.username + ': </a>' + data.comment + '</li>');
-      $saveButton.parent().siblings('ul.comments').append('<button class="remove glyphicon glyphicon-remove" name="' + data.delete_path  + '"></button>');
+      $saveButton.parent().siblings('ul.comments').append(' <button class="remove glyphicon glyphicon-remove" name="' + data.delete_path  + '"></button>');
     })
     $('.comment_form').hide();
     $('.comment').show();
