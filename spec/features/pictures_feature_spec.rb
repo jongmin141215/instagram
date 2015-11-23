@@ -47,7 +47,7 @@ feature 'Pictures' do
     #   @user.pictures.create(image_file_name: 'associations.jpg', description: 'associations')
     #   visit "/users/#{@user.id}/pictures"
     #   find('.glyphicon-trash').click
-    #   fill_in 'picture_description', with: 'has many through associations'
+    #   fill_in 'picture[description]', with: 'has many through associations'
     #   find('.save').click
     #   expect(page).to have_content 'has many through associations'
     # end

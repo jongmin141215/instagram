@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show], shallow: true do
     resources :pictures, shallow: true do
       resources :comments
+      resources :likes
     end
   end
 
