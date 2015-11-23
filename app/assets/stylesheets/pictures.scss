@@ -78,6 +78,8 @@ img {
   margin-left: -44px;
   padding-left: 10px;
   width: 390px;
+  display: inline-block;
+  // margin-right: 1px;
 }
 .icons {
   height: 23px;
@@ -90,4 +92,7 @@ img {
   margin-right: 5px;
   // margin-bottom: 1px;
   font-size: 12px;
+}
+.remove {
+  margin-right: 3px;
 }

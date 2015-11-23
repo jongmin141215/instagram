@@ -31,7 +31,6 @@ $(function() {
     event.preventDefault();
     var $deleteButton = $(this);
     var $url = $(this).attr('name');
-    console.log($url);
     $.ajax({
       url: $url,
       method: 'DELETE',

@@ -23,13 +23,25 @@ $(function() {
       data: {"comment": {"content": $saveButton.next().children('input[type="textarea"]').val()}},
       dataType: "json"
     }).done(function(data) {
-      console.log(data.userid);
-      console.log(data.username);
-      $saveButton.parent().siblings('ul.comments').append('<li class="each_comment"><a href="/users/' + data.userid + '/pictures">'+ data.username + ': </a>' + data.comment + '</li>')
+      $saveButton.parent().siblings('ul.comments').append('<li class="each_comment"><a href="/users/' + data.userid + '/pictures">'+ data.username + ': </a>' + data.comment + '</li>');
+      $saveButton.parent().siblings('ul.comments').append('<button class="remove glyphicon glyphicon-remove" name="' + data.delete_path  + '"></button>');
     })
     $('.comment_form').hide();
     $('.comment').show();
     $('.glyphicon-save').hide();
   });
 
+  $(document).on('click', '.remove', function(event) {
+    var $removeButton = $(this);
+    event.preventDefault();
+    var url = $removeButton.attr('name');
+    $.ajax({
+      url: url,
+      method: 'DELETE',
+      data: {}
+    }).done(function() {
+      $removeButton.prev('.each_comment').remove();
+      $removeButton.remove();
+    })
+  })
 });

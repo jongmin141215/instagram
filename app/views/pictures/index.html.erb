@@ -15,7 +15,6 @@
         <div class="icons">
           <span class="description"><%= picture.description %></span>
           <% if current_user && current_user.id == picture.user_id %>
-
             <button class='delete glyphicon glyphicon-trash' name="<%= picture_path(picture) %>"></button>
             <button class="edit glyphicon glyphicon-edit"></button>
           <% end %>
@@ -26,6 +25,9 @@
           <ul class="comments">
             <% picture.comments.each do |comment| %>
               <li class="each_comment"><%= link_to "#{comment.user.name}: ", user_pictures_path(comment.user) %><%= comment.content %></li>
+              <% if current_user && current_user.id == comment.user_id %>
+                <button class="remove glyphicon glyphicon-remove" name="<%= comment_path(comment) %>"></button>
+              <% end %>
             <% end %>
           </ul>
         <% end %>
