@@ -2,16 +2,25 @@
 <html>
 <head>
   <title>Instagram</title>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script>
+    $(function() {
+      new app.users;
+    });
+  </script>
 </head>
 <body>
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <%= link_to "Brand", root_path, class: "navbar-brand" %>
+      <div class="user_search">
+        <input type="text" id="user-search-txt", class="form-control" autofocus>
+        <div class="results" id="user-search-results"></div>
+      </div>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
@@ -25,6 +34,5 @@
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <%= yield %>
-
 </body>
 </html>

@@ -96,3 +96,68 @@ img {
 .remove {
   margin-right: 3px;
 }
+#user-search-txt {
+  margin: auto;
+  width: 535px;
+  display: inline-block;
+
+}
+.user_search {
+  padding-top: 10px;
+  display: inline-block;
+  width: 535px;
+}
+.name {
+  list-style-type: none;
+}
+.search_link {
+  display: block;
+}
+.search_items {
+  display: block;
+}
+
+.user_search input {
+  width: 100%;
+  font-size: 1em;
+  padding: .5em 1.3em;
+  background: transparent;
+  border: 1px solid #ddd;
+  border-radius: 2em;
+}
+
+.user_search input:focus {
+  border-color: #A5CEF5;
+}
+
+.user_search .results .ui-widget-content {
+  background: #fff;
+  font-size: 1em;
+  padding: .5em 0;
+  border-color: #ddd;
+  box-shadow: 0 .1em .2em rgba(187, 187, 187, 0.64);
+  line-height: 1.2;
+  max-height: 20em;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.user_search .results .ui-menu-item {
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  padding: .4em .6em .4em 2.2em;
+  position: relative;
+  border: 0;
+  border-left: 5px solid transparent;
+  position: relative;
+  height: 2em;
+}
+
+.user_search .results .ui-state-focus {
+  background: #fff;
+  border-left-color: #08c;
+  font-weight: 300;
+}
+
+.user_search .results .ui-state-focus .name {
+  color: #08c;
+}

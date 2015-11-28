@@ -2,6 +2,10 @@ class PicturesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :homepage]
   def index
     @pictures = Picture.where(user_id: params[:user_id]).order("created_at DESC")
+    respond_to do |format|
+      format.html
+      format.json { @users = User.search(params[:term]) }
+    end
   end
 
   def new
