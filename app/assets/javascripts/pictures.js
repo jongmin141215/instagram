@@ -40,7 +40,6 @@ $(function() {
     })
   })
 
-
   var app = window.app = {};
 
   app.users = function() {

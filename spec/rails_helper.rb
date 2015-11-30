@@ -11,6 +11,7 @@ require 'capybara/poltergeist'
 require 'support/database_cleaner'
 require 'support/wait_for_ajax'
 require 'byebug'
+require 'helpers/session_helper'
 Capybara.javascript_driver = :poltergeist
 
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -39,6 +40,7 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include FactoryGirl::Syntax::Methods
   config.include WaitForAjax, type: :feature
+  config.include SessionHelper
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false

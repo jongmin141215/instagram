@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :pictures
   has_many :comments
   has_many :likes
-
+  validates :name, uniqueness: true
   def self.search(term)
     where('LOWER(name) LIKE :term', term: "%#{term.downcase}%")
   end
