@@ -9,35 +9,26 @@ feature 'Comments' do
 
   context 'Visitors signed in' do
     before do
-      visit '/users/sign_in'
-      fill_in 'Email', with: @user2.email
-      fill_in 'Password', with: @user2.password
-      click_button 'Log in'
+      sign_in(@user2.email, @user2.password)
     end
 
     scenario 'Visitors can write commnet on pictures', js: true do
       visit "/users/#{@user.id}/pictures"
-      find('.comment').click
-      fill_in 'comment[content]', with: 'nice'
-      find('.glyphicon-save').click
+      leave_comment('nice')
       expect(page).to have_content 'nice'
       expect(page).to have_link 'Jongmin2'
     end
 
     scenario 'Comments cannot be empty', js: true do
       visit "/users/#{@user.id}/pictures"
-      find('.comment').click
-      fill_in 'comment[content]', with: ''
-      find('.glyphicon-save').click
+      leave_comment('')
       wait_for_ajax
       expect(page).not_to have_css 'li.each_comment'
     end
 
     scenario 'User can delete their own comments', js: true do
       visit "/users/#{@user.id}/pictures"
-      find('.comment').click
-      fill_in 'comment[content]', with: 'nice'
-      find('.glyphicon-save').click
+      leave_comment('nice')
       find('.remove').click
       wait_for_ajax
       expect(page).not_to have_content 'nice'

@@ -12,6 +12,9 @@ require 'support/database_cleaner'
 require 'support/wait_for_ajax'
 require 'byebug'
 require 'helpers/session_helper'
+require 'helpers/picture_helper'
+require 'helpers/comment_helper'
+require 'helpers/search_helper'
 Capybara.javascript_driver = :poltergeist
 
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -41,7 +44,9 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include WaitForAjax, type: :feature
   config.include SessionHelper
-
+  config.include PictureHelper
+  config.include CommentHelper
+  config.include SearchHelper
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.

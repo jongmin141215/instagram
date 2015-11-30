@@ -9,10 +9,7 @@ feature 'liking pictures' do
 
   context 'Visitor signed in', js: true do
     before do
-      visit '/users/sign_in'
-      fill_in 'Email', with: @user2.email
-      fill_in 'Password', with: @user2.password
-      click_button 'Log in'
+      sign_in(@user2.email, @user2.password)
     end
 
     scenario 'User can like pictures, which updates the picture like count', js: true do
@@ -40,10 +37,7 @@ feature 'liking pictures' do
 
   context 'User who posted a picture signed in' do
     before do
-      visit '/users/sign_in'
-      fill_in 'Email', with: @user.email
-      fill_in 'Password', with: @user.password
-      click_button 'Log in'
+      sign_in(@user.email, @user.password)
     end
 
     scenario 'cannot see the like button', js: true do

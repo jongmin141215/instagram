@@ -4,10 +4,7 @@ feature 'Pictures' do
   context 'User signed in' do
     before do
       @user = create :user
-      visit '/users/sign_in'
-      fill_in 'Email', with: @user.email
-      fill_in 'Password', with: @user.password
-      click_button 'Log in'
+      sign_in(@user.email, @user.password)
       click_button 'Add a picture'
     end
     scenario 'User can see a form' do
@@ -17,21 +14,15 @@ feature 'Pictures' do
     end
 
     scenario 'User can add a picture' do
-      attach_file('Upload Image', './spec/fixtures/associations.jpg')
-      fill_in 'picture_description', with: 'associations'
-      click_button 'Post'
+      attach_picture('associations')
       expect(page).to have_selector 'img'
       expect(page).to have_content 'associations'
     end
 
     scenario 'Most recent picture is shown at the top' do
-      attach_file('Upload Image', './spec/fixtures/associations.jpg')
-      fill_in 'picture_description', with: 'Old'
-      click_button 'Post'
+      attach_picture('Old')
       click_button 'Add a picture'
-      attach_file('Upload Image', './spec/fixtures/makers.JPG')
-      fill_in 'picture_description', with: 'New'
-      click_button 'Post'
+      attach_picture('New')
       expect(page).to have_css("div.pictures .panel:nth-child(1)", text: 'New')
       expect(page).to have_css("div.pictures .panel:nth-child(2)", text: 'Old')
     end
@@ -43,19 +34,16 @@ feature 'Pictures' do
       expect(page).to have_content 'Image can\'t be blank'
     end
 
-    # scenario 'User can edit description', js: true do
-    #   @user.pictures.create(image_file_name: 'associations.jpg', description: 'associations')
-    #   visit "/users/#{@user.id}/pictures"
-    #   find('.glyphicon-trash').click
-    #   fill_in 'picture[description]', with: 'has many through associations'
-    #   find('.save').click
-    #   expect(page).to have_content 'has many through associations'
-    # end
+    scenario 'User can edit description', js: true do
+      @user.pictures.create(image_file_name: 'associations.jpg', description: 'associations')
+      visit "/users/#{@user.id}/pictures"
+      find('.glyphicon-edit').click
+      fill_in 'picture[description]', with: 'has many through associations'
+      find('.save').click
+      expect(page).to have_content 'has many through associations'
+    end
 
     scenario 'User can delete picture', js: true do
-      # attach_file('Upload Image', './spec/fixtures/associations.jpg')
-      # fill_in 'picture_description', with: 'associations'
-      # click_button 'Post'
       @user.pictures.create(image_file_name: 'associations.jpg', description: 'associations')
       visit "/users/#{@user.id}/pictures"
       find('.delete').click
@@ -73,16 +61,10 @@ feature 'Pictures' do
   context 'User not signed in' do
     before do
       @user = create :user
-      visit '/users/sign_in'
-      fill_in 'Email', with: @user.email
-      fill_in 'Password', with: @user.password
-      click_button 'Log in'
+      sign_in(@user.email, @user.password)
       click_button 'Add a picture'
-      attach_file('Upload Image', './spec/fixtures/associations.jpg')
-      fill_in 'picture_description', with: 'associations'
-      click_button 'Post'
+      attach_picture('associations')
       click_link 'Sign out'
-      user2 = create :user2
     end
 
     scenario 'User can still see pictures from other users' do
@@ -91,20 +73,14 @@ feature 'Pictures' do
       expect(page).to have_content 'associations'
     end
 
-    # scenario 'User cannot edit picture description' do
-    #   visit "/users/#{@user.id}/pictures"
-    #   find('.glyphicon-trash').click
-    #   expect(page).to have_selector 'textarea'
-    # end
+    scenario 'User cannot edit picture description' do
+      visit "/users/#{@user.id}/pictures"
+      expect(page).not_to have_css('.edit')
+    end
 
     scenario 'User cannot see the trash bin icon' do
       visit "/users/#{@user.id}/pictures"
       expect(page).not_to have_selector '.delete'
-    end
-
-    scenario 'User cannot see the edit icon' do
-      visit "/users/#{@user.id}/pictures"
-      expect(page).not_to have_selector '.edit'
     end
   end
 

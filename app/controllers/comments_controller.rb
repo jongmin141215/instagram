@@ -12,7 +12,6 @@ class CommentsController < ApplicationController
     @picture = Picture.find(params[:picture_id])
     @comment = @picture.build_with_user(comment_params, current_user)
     if @comment.save
-    # redirect_to "/users/#{@picture.user_id}/pictures"
       render json: { comment: params[:comment][:content], username: current_user.name, userid: current_user.id, delete_path: comment_path(@comment) }
     else
       render nothing: true

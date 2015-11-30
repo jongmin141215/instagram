@@ -63,9 +63,6 @@ $(function() {
     },
     _render: function(ul, item) {
       var markup = [
-        // '<span class="img">',
-        //   '<img src="' + item.image_url + '" />',
-        // '</span>',
         '<a href="/users/' + item.id + '/pictures" class="search_link"><span class="name">' + item.name + '</span></a>'
       ];
       return $('<li class="search_items">')
@@ -73,5 +70,4 @@ $(function() {
         .appendTo(ul);
     }
   };
-
 });
