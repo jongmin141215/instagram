@@ -2,15 +2,15 @@
 
 This is a photo-sharing web application where users can post their pictures and interact with their friends. Users' photos are stored in amazon s3.
 
-![main](main.png)
+![main](/images/main.png)
 
 Users can search their friend using autocomplete. By clicking their friend's name, they can visit their friend's album.
 
-![search](search.png)
+![search](/images/search.png)
 
 Users can leave comments right under each picture. They can also click the like button.
 
-![comment](comment.png)
+![comment](/images/comment.png)
 
 Demo
 ----
