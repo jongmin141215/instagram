@@ -4,7 +4,7 @@ This is a photo-sharing web application where users can post their pictures and 
 
 ![main](app/assets/images/main.png)
 
-Users can search their friend using autocomplete. By clicking their friend's name, they can visit their friend's album.
+Users can search their friend using autocomplete. By clicking their friend's name, they can visit their friend's photo album.
 
 ![search](app/assets/images/search.png)
 
