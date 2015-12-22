@@ -1,4 +1,5 @@
 # Photo Album
+![build](https://travis-ci.org/jongmin141215/instagram.svg?branch=master)
 
 This is a photo-sharing web application where users can post their pictures and interact with their friends. Users' photos are stored in amazon s3.
 
