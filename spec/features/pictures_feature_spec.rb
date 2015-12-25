@@ -19,6 +19,14 @@ feature 'Pictures' do
       expect(page).to have_content 'associations'
     end
 
+    scenario 'Time is displayed' do
+      attach_picture('associations')
+      picture = Picture.first
+      within '.time' do
+        expect(page).to have_content(picture.created_at.strftime('%H:%M %m/%d/%y'))
+      end
+    end
+
     scenario 'Most recent picture is shown at the top' do
       attach_picture('Old')
       click_button 'Add a picture'

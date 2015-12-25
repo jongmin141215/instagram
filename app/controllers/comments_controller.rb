@@ -12,7 +12,11 @@ class CommentsController < ApplicationController
     @picture = Picture.find(params[:picture_id])
     @comment = @picture.build_with_user(comment_params, current_user)
     if @comment.save
-      render json: { comment: params[:comment][:content], username: current_user.name, userid: current_user.id, delete_path: comment_path(@comment) }
+      render json: { comment: params[:comment][:content],
+                     username: current_user.name,
+                     userid: current_user.id,
+                     delete_path: comment_path(@comment),
+                     created_at: @comment.created_at.strftime('%H:%M %m/%d/%y') }
     else
       render nothing: true
     end

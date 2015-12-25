@@ -23,12 +23,14 @@ $(function() {
       data: {"comment": {"content": $saveButton.next().children('input[type="textarea"]').val()}},
       dataType: "json"
     }).done(function(data) {
-      $saveButton.parent().siblings('ul.comments').append('<li class="each_comment"><a href="/users/' + data.userid + '/pictures">'+ data.username + ': </a>' + data.comment + '</li>');
+      console.log(data.created_at)
+      $saveButton.parent().siblings('ul.comments').append('<li class="each_comment"><a href="/users/' + data.userid + '/pictures">' + data.username + ': </a>' + data.comment + '<div class="time">' + data.created_at + '</div></li>');
       $saveButton.parent().siblings('ul.comments').append(' <button class="remove glyphicon glyphicon-remove" name="' + data.delete_path  + '"></button>');
     })
     $('.comment_form').hide();
     $('.comment').show();
     $('.glyphicon-save').hide();
+    $('.comment_form input').val('');
   });
 
   $(document).on('click', '.remove', function(event) {

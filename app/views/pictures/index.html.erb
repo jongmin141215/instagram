@@ -10,6 +10,9 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <%= image_tag picture.image.url(:medium) %>
+        <div class="time">
+          <%= picture.created_at.strftime('%H:%M %m/%d/%y') %>
+        </div>
       </div>
       <div class="panel-footer">
         <div class="icons">
@@ -28,7 +31,13 @@
         <% if picture.comments %>
           <ul class="comments">
             <% picture.comments.each do |comment| %>
-              <li class="each_comment"><%= link_to "#{comment.user.name}: ", user_pictures_path(comment.user) %><%= comment.content %></li>
+              <li class="each_comment">
+                <%= link_to "#{comment.user.name}: ", user_pictures_path(comment.user) %>
+                <%= comment.content %>
+                <div class="time">
+                  <%= comment.created_at.strftime('%H:%M %m/%d/%y') %>
+                </div>
+              </li>
               <% if current_user && current_user.id == comment.user_id %>
                 <button class="remove glyphicon glyphicon-remove" name="<%= comment_path(comment) %>"></button>
               <% end %>

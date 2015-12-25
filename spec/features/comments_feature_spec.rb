@@ -13,10 +13,20 @@ feature 'Comments' do
     end
 
     scenario 'Visitors can write commnet on pictures', js: true do
-      visit "/users/#{@user.id}/pictures"
+      visit user_pictures_path(@user)
       leave_comment('nice')
       expect(page).to have_content 'nice'
       expect(page).to have_link 'Jongmin2'
+    end
+
+    scenario 'Time is displayed', js: true do
+      visit user_pictures_path(@user)
+      leave_comment('nice')
+      wait_for_ajax
+      comment = Comment.first
+      within '.each_comment' do
+        expect(page).to have_content comment.created_at.strftime('%H:%M %m/%d/%y')
+      end
     end
 
     scenario 'Comments cannot be empty', js: true do
