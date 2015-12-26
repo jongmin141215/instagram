@@ -1,7 +1,7 @@
 class PicturesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :homepage]
   def index
-    @pictures = Picture.paginate(page: params[:page], per_page: 10)
+    @pictures = Picture.paginate(page: params[:page], per_page: 10).where(user_id: params[:user_id]).order("created_at DESC")
   end
 
   def new
