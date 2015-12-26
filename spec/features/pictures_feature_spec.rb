@@ -92,4 +92,16 @@ feature 'Pictures' do
     end
   end
 
+  scenario 'Only 10 pictures can be displayed on one page' do
+    @user = create :user
+    sign_in(@user.email, @user.password)
+    click_button 'Add a picture'
+    attach_picture('1st picture')
+    10.times do
+      click_button 'Add a picture'
+      attach_picture('associations')
+    end
+    expect(page).not_to have_content '1st picture'
+  end
+
 end
